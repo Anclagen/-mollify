@@ -13,11 +13,21 @@
 	import Ego from '$lib/components/ui/Ego.svelte';
 	import Search from '$lib/components/header/Search.svelte';
 	import { onMount } from 'svelte';
+	import { addFileToDirectory, createDirectoryNode } from '$lib/utils/structureFileTree';
 
 	onMount(async () => {
 		const response = await fetch('/api/Sitemap');
-		const data = await response.json();
-		console.log(data);
+		const indexedFiles = await response.json();
+		console.log(indexedFiles);
+
+		const projectRoot = 'src/routes/content'; // Adjust this to the root path of your content
+		const rootDirectory = createDirectoryNode(projectRoot, projectRoot);
+
+		indexedFiles.forEach((filePath: string) => {
+			addFileToDirectory(rootDirectory, filePath);
+		});
+
+		console.log(JSON.stringify(rootDirectory, null, 2));
 	});
 </script>
 
