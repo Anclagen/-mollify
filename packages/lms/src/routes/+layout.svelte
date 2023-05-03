@@ -12,12 +12,19 @@
 	import Header from '$lib/components/header/Header.svelte';
 	import Ego from '$lib/components/ui/Ego.svelte';
 	import Search from '$lib/components/header/Search.svelte';
+	import { onMount } from 'svelte';
+
+	onMount(async () => {
+		const response = await fetch('/api/Sitemap');
+		const data = await response.json();
+		console.log(data);
+	});
 </script>
 
 <div class="layout-grid">
 	<Logo />
 	<Header>
-		<Search/>
+		<Search />
 		<Settings />
 	</Header>
 	<Molly />
@@ -28,7 +35,7 @@
 	<Navigation />
 	<ContentNav />
 	<Footer>
-		<Ego/>
+		<Ego />
 		<Reader />
 	</Footer>
 </div>
