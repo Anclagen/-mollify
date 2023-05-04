@@ -23,6 +23,6 @@ export async function indexFilesystem(
 	return files;
 }
 
-export function filterSvelteAndRelatedFiles(filename: string): boolean {
+export function filterMdFiles(filename: string): boolean {
 	return /\.(md)$/i.test(filename);
 }
