@@ -1,5 +1,6 @@
 import preprocess from 'svelte-preprocess';
 import node from '@sveltejs/adapter-node';
+import adapter from '@sveltejs/adapter-netlify';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import { mdsvex } from 'mdsvex';
 import callouts from 'remark-emoji-callout';
@@ -37,8 +38,8 @@ const config = {
 
   kit: {
     // See https://kit.svelte.dev/docs/adapters for more information about adapters.
-    adapter: node({
-      out: '../../../build',
+    adapter: adapter({
+      out: '../../../build'
     })
   }
 };
